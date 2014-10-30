@@ -1,4 +1,5 @@
 import itertools
+import argparse
 
 def switcheroo(phrase,englishThreshold = 0.5):
   f = open('words.txt')
@@ -26,4 +27,9 @@ def switcheroo(phrase,englishThreshold = 0.5):
     if englishWords/len(perm) >= englishThreshold:
       print curStr
 
-switcheroo('switch first letters of words',0.4)
+parser = argparse.ArgumentParser()
+parser.add_argument("input",type=str,help="Input text")
+parser.add_argument("threshold",type=float,help="English Threshold")
+args = parser.parse_args()
+
+switcheroo(args.input,args.threshold)
